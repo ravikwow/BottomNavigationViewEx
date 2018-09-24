@@ -130,7 +130,7 @@ public class BottomNavigationViewEx extends BottomNavigationView {
             mSmallLabel.clearAnimation();
 
             // mShiftingMode
-            boolean mShiftingMode = getField(button.getClass(), button, "shiftingMode");
+            boolean mShiftingMode = getField(button.getClass(), button, "isShifting");
             boolean selected = button.getItemPosition() == currentItem;
             if (mShiftingMode) {
                 if (selected) {
@@ -403,7 +403,7 @@ public class BottomNavigationViewEx extends BottomNavigationView {
         // 1. get mMenuView
         BottomNavigationMenuView mMenuView = getBottomNavigationMenuView();
         // 2. change field mShiftingMode value in mMenuView
-        setField(mMenuView.getClass(), mMenuView, "shiftingMode", enable);
+        setField(mMenuView.getClass(), mMenuView, "isShifting", enable);
 
         mMenuView.updateMenuView();
     }
@@ -430,7 +430,7 @@ public class BottomNavigationViewEx extends BottomNavigationView {
         BottomNavigationItemView[] mButtons = getBottomNavigationItemViews();
         // 3. change field mShiftingMode value in mButtons
         for (BottomNavigationItemView button : mButtons) {
-            setField(button.getClass(), button, "shiftingMode", enable);
+            setField(button.getClass(), button, "isShifting", enable);
         }
         mMenuView.updateMenuView();
     }
