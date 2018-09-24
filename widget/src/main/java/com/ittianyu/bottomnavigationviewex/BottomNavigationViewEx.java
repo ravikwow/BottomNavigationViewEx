@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import com.google.android.material.bottomnavigation.LabelVisibilityMode;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
@@ -403,7 +404,8 @@ public class BottomNavigationViewEx extends BottomNavigationView {
         // 1. get mMenuView
         BottomNavigationMenuView mMenuView = getBottomNavigationMenuView();
         // 2. change field mShiftingMode value in mMenuView
-        setField(mMenuView.getClass(), mMenuView, "isShifting", enable);
+        mMenuView.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+        setField(mMenuView.getClass(), mMenuView, "set", new TransitionSet());
 
         mMenuView.updateMenuView();
     }
@@ -430,8 +432,12 @@ public class BottomNavigationViewEx extends BottomNavigationView {
         BottomNavigationItemView[] mButtons = getBottomNavigationItemViews();
         // 3. change field mShiftingMode value in mButtons
         for (BottomNavigationItemView button : mButtons) {
-            setField(button.getClass(), button, "isShifting", enable);
+            button.setShifting(enable);
+
+            button.setLabelVisibilityMode(LabelVisibilityMode.LABEL_VISIBILITY_LABELED);
+            button.setChecked(button.isSelected());
         }
+        refreshTextViewVisibility();
         mMenuView.updateMenuView();
     }
 
