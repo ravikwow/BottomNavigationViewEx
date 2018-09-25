@@ -31,7 +31,7 @@ import java.lang.reflect.Field;
  */
 public class BottomNavigationViewEx extends BottomNavigationView {
     // used for animation
-    private int mShiftAmount;
+    private float mShiftAmount;
     private float mScaleUpFactor;
     private float mScaleDownFactor;
     private boolean animationRecord;
